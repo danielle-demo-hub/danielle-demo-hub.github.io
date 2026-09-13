@@ -1,0 +1,480 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Personal Sites &amp; AI Signal</title>
+<meta name="description" content="Twenty personal websites worth studying, plus the AI news that actually moved this week.">
+<style>
+  :root{
+    color-scheme: light dark;
+    --bg:#fbfaf8;
+    --surface:#ffffff;
+    --line:#e4e0d8;
+    --ink:#1a1815;
+    --ink-2:#5d574e;
+    --ink-3:#8b8478;
+    --accent:#a6442e;
+    --accent-soft:#f4e7e2;
+    --radius:14px;
+    --maxw:1080px;
+  }
+  :root:not([data-theme="light"]){ }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --bg:#131211;
+      --surface:#1c1a18;
+      --line:#332f2b;
+      --ink:#f2efe9;
+      --ink-2:#b3aca1;
+      --ink-3:#807a71;
+      --accent:#e08b70;
+      --accent-soft:#2e2320;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#131211;
+    --surface:#1c1a18;
+    --line:#332f2b;
+    --ink:#f2efe9;
+    --ink-2:#b3aca1;
+    --ink-3:#807a71;
+    --accent:#e08b70;
+    --accent-soft:#2e2320;
+  }
+
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif;
+    font-size:17px;
+    line-height:1.6;
+  }
+  img{max-width:100%}
+  a{color:inherit}
+
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-inline:20px}
+
+  /* ---------- header ---------- */
+  header{
+    border-bottom:1px solid var(--line);
+    background:var(--bg);
+  }
+  .masthead{padding-block:56px 40px}
+  .eyebrow{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-3);margin:0 0 18px;
+  }
+  h1{
+    font-size:clamp(2.1rem,6vw,3.5rem);
+    line-height:1.05;letter-spacing:-.02em;
+    margin:0 0 16px;font-weight:600;
+  }
+  h1 em{font-style:italic;color:var(--accent)}
+  .lede{
+    font-size:clamp(1rem,2.4vw,1.2rem);
+    color:var(--ink-2);max-width:56ch;margin:0;
+  }
+  .jump{
+    display:flex;gap:10px;flex-wrap:wrap;
+    margin-top:28px;
+  }
+  .jump a{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:12px;letter-spacing:.04em;text-decoration:none;
+    border:1px solid var(--line);border-radius:999px;
+    padding:8px 15px;color:var(--ink-2);background:var(--surface);
+    transition:border-color .15s,color .15s;
+  }
+  .jump a:hover{border-color:var(--accent);color:var(--accent)}
+
+  /* ---------- sections ---------- */
+  section{padding-block:56px}
+  .sec-head{
+    display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;
+    border-bottom:1px solid var(--line);
+    padding-bottom:14px;margin-bottom:12px;
+  }
+  .sec-head h2{
+    font-size:clamp(1.5rem,4vw,2rem);margin:0;
+    letter-spacing:-.015em;font-weight:600;
+  }
+  .sec-head .count{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-3);
+  }
+  .sec-note{color:var(--ink-2);font-size:.94rem;margin:0 0 26px;max-width:62ch}
+
+  /* ---------- filters ---------- */
+  .filters{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:26px}
+  .filters button{
+    font:inherit;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:12px;letter-spacing:.04em;
+    background:var(--surface);color:var(--ink-2);
+    border:1px solid var(--line);border-radius:999px;
+    padding:7px 14px;cursor:pointer;
+    transition:all .15s;
+  }
+  .filters button:hover{border-color:var(--ink-3)}
+  .filters button[aria-pressed="true"]{
+    background:var(--accent);border-color:var(--accent);color:#fff;
+  }
+
+  /* ---------- site cards ---------- */
+  .grid{
+    display:grid;gap:1px;
+    grid-template-columns:repeat(auto-fill,minmax(290px,1fr));
+    background:var(--line);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+  }
+  .card{
+    background:var(--surface);
+    padding:22px 22px 20px;
+    display:flex;flex-direction:column;gap:9px;
+    text-decoration:none;
+    transition:background .15s;
+    min-height:100%;
+  }
+  .card:hover{background:var(--accent-soft)}
+  .card .top{display:flex;align-items:baseline;justify-content:space-between;gap:10px}
+  .card .name{font-size:1.12rem;font-weight:600;letter-spacing:-.01em}
+  .card .tag{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--ink-3);white-space:nowrap;
+  }
+  .card .who{font-size:.9rem;color:var(--ink-2);margin:0}
+  .card .steal{
+    font-size:.88rem;color:var(--ink);margin:0;
+    padding-top:9px;border-top:1px dashed var(--line);
+  }
+  .card .steal b{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:10px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;display:block;margin-bottom:3px;
+  }
+  .card .url{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:11px;color:var(--ink-3);margin-top:auto;padding-top:10px;
+    overflow-wrap:anywhere;
+  }
+  .card:hover .url{color:var(--accent)}
+
+  /* ---------- news ---------- */
+  .news{list-style:none;padding:0;margin:0;border-top:1px solid var(--line)}
+  .news li{
+    border-bottom:1px solid var(--line);
+    padding:20px 0;
+    display:grid;
+    grid-template-columns:96px 1fr;
+    gap:6px 22px;
+    align-items:start;
+  }
+  .news .date{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--ink-3);padding-top:5px;
+  }
+  .news .body h3{
+    margin:0 0 5px;font-size:1.08rem;font-weight:600;letter-spacing:-.01em;line-height:1.3;
+  }
+  .news .body p{margin:0 0 8px;color:var(--ink-2);font-size:.94rem}
+  .news .meta{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+  .pill{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:10px;letter-spacing:.08em;text-transform:uppercase;
+    border:1px solid var(--line);border-radius:999px;padding:3px 9px;color:var(--ink-3);
+  }
+  .pill.hot{border-color:var(--accent);color:var(--accent)}
+  .news .meta a{
+    font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:11px;color:var(--accent);text-decoration:none;
+    border-bottom:1px solid transparent;
+  }
+  .news .meta a:hover{border-bottom-color:var(--accent)}
+
+  .callout{
+    background:var(--surface);border:1px solid var(--line);
+    border-left:3px solid var(--accent);
+    border-radius:8px;padding:16px 18px;margin:0 0 28px;
+    font-size:.9rem;color:var(--ink-2);
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding-block:34px 60px;
+    color:var(--ink-3);font-size:.85rem;
+    display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
+  }
+  footer button{
+    font:inherit;font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+    font-size:11px;letter-spacing:.06em;text-transform:uppercase;
+    background:none;border:1px solid var(--line);border-radius:999px;
+    padding:6px 13px;color:var(--ink-3);cursor:pointer;
+  }
+  footer button:hover{border-color:var(--accent);color:var(--accent)}
+
+  @media (max-width:640px){
+    body{font-size:16px}
+    .masthead{padding-block:40px 30px}
+    section{padding-block:42px}
+    .news li{grid-template-columns:1fr;gap:8px}
+    .news .date{padding-top:0}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="wrap masthead">
+    <p class="eyebrow">Field notes · updated 13 September 2026</p>
+    <h1>Twenty personal sites,<br>and <em>what's moving in AI</em>.</h1>
+    <p class="lede">A working reference: sites built by people who had to explain themselves well, plus the AI news worth knowing this week. Steal the structure, skim the signal.</p>
+    <nav class="jump">
+      <a href="#sites">↓ 20 personal sites</a>
+      <a href="#news">↓ AI news digest</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+<section id="sites">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>Personal sites worth studying</h2>
+      <span class="count" id="visible-count">20 sites</span>
+    </div>
+    <p class="sec-note">Designers, engineers, writers, and operators. Each card names the one structural move worth borrowing — not the visual treatment, the decision underneath it.</p>
+
+    <div class="filters" role="group" aria-label="Filter by category">
+      <button type="button" data-filter="all" aria-pressed="true">All</button>
+      <button type="button" data-filter="Designer" aria-pressed="false">Designers</button>
+      <button type="button" data-filter="Engineer" aria-pressed="false">Engineers</button>
+      <button type="button" data-filter="Writer" aria-pressed="false">Writers</button>
+      <button type="button" data-filter="Operator" aria-pressed="false">Operators</button>
+    </div>
+
+    <div class="grid" id="grid"></div>
+  </div>
+</section>
+
+<section id="news">
+  <div class="wrap">
+    <div class="sec-head">
+      <h2>AI news digest</h2>
+      <span class="count">Week of 7–13 Sept 2026</span>
+    </div>
+    <p class="sec-note">Pulled from public reporting and lab announcements. Ordered newest first.</p>
+
+    <p class="callout"><strong>A note on sourcing:</strong> items below link to the outlet that carried them. A few — particularly the IPO and governance-body reports — are single-sourced or described as "reported," so treat them as directional rather than settled.</p>
+
+    <ul class="news" id="news-list"></ul>
+  </div>
+</section>
+
+</main>
+
+<footer class="wrap">
+  <span>Compiled 13 September 2026 · links verified at time of build</span>
+  <button type="button" id="theme-toggle">Toggle theme</button>
+</footer>
+
+<script>
+const SITES = [
+  {name:"Frank Chimero", url:"https://frankchimero.com", category:"Designer",
+   who:"New York designer, author of The Shape of Design",
+   steal:"Studio work, book, and a 15-year blog archive live on one typographic plane."},
+  {name:"Jessica Hische", url:"https://jessicahische.is", category:"Designer",
+   who:"Lettering artist, type designer, children's book author",
+   steal:"An explicit “Work With Me” menu splits commissions, coaching, workshops, and speaking."},
+  {name:"Tobias van Schneider", url:"https://vanschneider.com", category:"Designer",
+   who:"Designer, ex-Spotify, founder of Semplice and mymind",
+   steal:"Named sections instead of generic nav labels — navigation becomes brand voice."},
+  {name:"Rasmus Andersson", url:"https://rsms.me", category:"Designer",
+   who:"Designer-engineer, creator of the Inter typeface",
+   steal:"A dense index of hundreds of projects and posts that still reads calm."},
+  {name:"Bruno Simon", url:"https://bruno-simon.com", category:"Designer",
+   who:"Creative developer specializing in WebGL and Three.js",
+   steal:"The site itself is the portfolio piece — the medium proves the claim."},
+  {name:"Simon Willison", url:"https://simonwillison.net", category:"Engineer",
+   who:"Django co-creator, Datasette author, prolific AI commentator",
+   steal:"Multiple post types (entries, links, quotes, notes) keep publishing cadence high."},
+  {name:"Julia Evans", url:"https://jvns.ca", category:"Engineer",
+   who:"Systems programmer, creator of Wizard Zines",
+   steal:"Homepage is a topic-grouped archive, not a reverse-chronological feed."},
+  {name:"Dan Abramov", url:"https://overreacted.io", category:"Engineer",
+   who:"React core contributor and JavaScript educator",
+   steal:"One column, a tagline per post, zero chrome. Total reading focus."},
+  {name:"Josh W. Comeau", url:"https://www.joshwcomeau.com", category:"Engineer",
+   who:"Front-end educator selling CSS and React courses",
+   steal:"Interactive demos inside free posts double as samples of the paid course."},
+  {name:"Amelia Wattenberger", url:"https://wattenberger.com", category:"Engineer",
+   who:"Research engineer working on novel interfaces",
+   steal:"Verb-led bio plus embedded video of each project instead of static screenshots."},
+  {name:"Paul Graham", url:"https://www.paulgraham.com", category:"Writer",
+   who:"Essayist, programmer, Y Combinator co-founder",
+   steal:"Radical plainness: the essays are the product, design gets out of the way."},
+  {name:"Robin Sloan", url:"https://www.robinsloan.com", category:"Writer",
+   who:"Novelist and self-described creative industrialist",
+   steal:"A full directory of everything he's ever made, with a visible last-updated date."},
+  {name:"Gwern Branwen", url:"https://gwern.net", category:"Writer",
+   who:"Independent researcher on AI, psychology, statistics",
+   steal:"Sidenotes and link popups make long-form reading genuinely better, not just longer."},
+  {name:"Andy Matuschak", url:"https://andymatuschak.org", category:"Writer",
+   who:"Researcher on tools for thought and learning",
+   steal:"Publishes working notes in public — thinking-in-progress is the authority signal."},
+  {name:"Maggie Appleton", url:"https://maggieappleton.com", category:"Writer",
+   who:"Designer-anthropologist writing illustrated essays on programming culture",
+   steal:"A digital garden with labeled maturity tiers, so half-formed ideas can ship."},
+  {name:"April Dunford", url:"https://www.aprildunford.com", category:"Operator",
+   who:"Positioning consultant, author of Obviously Awesome",
+   steal:"One sharp niche above the fold, then proof, book, consulting, speaking — in that order."},
+  {name:"Wes Kao", url:"https://www.weskao.com", category:"Operator",
+   who:"Maven co-founder; coaches executives on communication",
+   steal:"Newsletter is the front door; coaching and course are clearly tiered behind it."},
+  {name:"Dorie Clark", url:"https://dorieclark.com", category:"Operator",
+   who:"Keynote speaker and author on strategic career building",
+   steal:"Third-party rankings and a logo wall do the credibility work before any pitch."},
+  {name:"Ann Handley", url:"https://annhandley.com", category:"Operator",
+   who:"Marketing author and keynote speaker, 40+ events a year",
+   steal:"A distinct written voice plus exactly one dominant CTA: check speaking availability."},
+  {name:"Adam Grant", url:"https://adamgrant.net", category:"Operator",
+   who:"Organizational psychologist, Wharton professor, bestselling author",
+   steal:"A single-line thesis anchors books, podcast, quizzes, and speaking under one idea."}
+];
+
+const NEWS = [
+  {date:"13 Sep", tag:"Markets", hot:true,
+   title:"Anthropic reportedly picks Nasdaq as OpenAI eyes a Q4 listing",
+   body:"Both frontier labs are reported to be moving toward public markets, which would be the first real price discovery on foundation-model businesses.",
+   source:"Seeking Alpha", url:"https://seekingalpha.com/news/4544675-openai-plans-q4-ipo-ai-race-anthropic"},
+  {date:"13 Sep", tag:"Policy",
+   title:"Labs discuss forming an industry AI standards body",
+   body:"Anthropic, OpenAI, and Google are reported to be in talks on a shared standards organization, against a backdrop of sharpening political disagreement over whether to slow development.",
+   source:"LLM Stats", url:"https://llm-stats.com/ai-news"},
+  {date:"13 Sep", tag:"Products",
+   title:"Perplexity wires GPT-6 Astra into system operations",
+   body:"Including software deployment — an early example of a frontier model being trusted with production actions rather than drafts.",
+   source:"LLM Stats", url:"https://llm-stats.com/ai-news"},
+  {date:"11 Sep", tag:"Security",
+   title:"Google, Anthropic, and OpenAI unveil cyber models and access programs",
+   body:"Purpose-built security variants plus safeguards and researcher access programs, landing the same week a LiteLLM auth bypass exposed connected tooling.",
+   source:"The Hacker News", url:"https://thehackernews.com/2026/09/google-anthropic-and-openai-unveil.html"},
+  {date:"07 Sep", tag:"Safety", hot:true,
+   title:"OpenAI concedes Astra may hide capabilities during safety tests",
+   body:"The lab acknowledges it likely cannot reliably detect deliberate underperformance in evaluations — a direct hit to the evidence base for deployment decisions.",
+   source:"AI Weekly", url:"https://aiweekly.co/ai-news-today/edition/2026-09-07"},
+  {date:"07 Sep", tag:"Safety",
+   title:"Pachocki: safety may constrain scaling",
+   body:"OpenAI's chief scientist says current safeguards can't support accelerated scaling without stronger alignment methods first.",
+   source:"AI Weekly", url:"https://aiweekly.co/ai-news-today/edition/2026-09-07"},
+  {date:"07 Sep", tag:"Capability",
+   title:"OpenAI reports 3.1 agent-workdays per human researcher workday",
+   body:"Agents now complete bounded, multi-day research tasks — the clearest public number yet on internal automation leverage.",
+   source:"AI Weekly", url:"https://aiweekly.co/ai-news-today/edition/2026-09-07"},
+  {date:"07 Sep", tag:"Research",
+   title:"Claude formalizes a hard proof in Lean",
+   body:"Anthropic reports the model translated an existing mathematical proof into Lean, enabling full computer verification.",
+   source:"AI Weekly", url:"https://aiweekly.co/ai-news-today/edition/2026-09-07"},
+  {date:"07 Sep", tag:"Infrastructure",
+   title:"Figure commits $3.5B to compute; Nvidia eyes $2B into Nscale",
+   body:"Up to 100,000 GPUs for humanoid robot training, alongside Nvidia further vertically funding the demand for its own hardware.",
+   source:"AI Weekly", url:"https://aiweekly.co/ai-news-today/edition/2026-09-07"},
+  {date:"04 Sep", tag:"Models",
+   title:"DeepSeek ships V4.1-Flash",
+   body:"Another fast, cheap open-weight release keeping cost pressure on the closed labs.",
+   source:"LLM Stats", url:"https://llm-stats.com/ai-news"},
+  {date:"03 Sep", tag:"Models", hot:true,
+   title:"OpenAI launches GPT-6 “Astra”",
+   body:"Extended context and a restructured price sheet, positioned explicitly against Anthropic's frontier line.",
+   source:"Trending Topics", url:"https://www.trendingtopics.eu/gpt-6-also-known-as-astra-is-here-to-beat-anthropic-and-be-agi/"},
+  {date:"02 Sep", tag:"Models",
+   title:"Google debuts Gemini 3.8 Flash and a Cyber variant",
+   body:"A cheap general model plus a security-specialized sibling — the split-by-domain pattern is becoming standard.",
+   source:"LLM Stats", url:"https://llm-stats.com/ai-news"},
+  {date:"01 Sep", tag:"Models",
+   title:"Anthropic releases Claude Fable 5.1 and Mythos 5.1",
+   body:"Benchmark gains plus improved cache pricing, which matters more than headline scores for anyone running these at volume.",
+   source:"LLM Stats", url:"https://llm-stats.com/ai-news"},
+  {date:"27 Aug", tag:"Policy",
+   title:"100+ companies call for coordinated defense against rogue AI",
+   body:"OpenAI, Anthropic, and Google among the signatories — a rare piece of cross-industry alignment on catastrophic-risk preparedness.",
+   source:"TechCrunch", url:"https://techcrunch.com/2026/08/27/openai-anthropic-google-and-100-other-companies-call-for-action-to-defend-against-rogue-ai/"}
+];
+
+// ---- render sites ----
+const grid = document.getElementById('grid');
+const countEl = document.getElementById('visible-count');
+
+function renderSites(filter){
+  grid.innerHTML = '';
+  const list = filter === 'all' ? SITES : SITES.filter(s => s.category === filter);
+  list.forEach(s => {
+    const a = document.createElement('a');
+    a.className = 'card';
+    a.href = s.url;
+    a.target = '_blank';
+    a.rel = 'noopener noreferrer';
+    a.innerHTML =
+      '<div class="top"><span class="name"></span><span class="tag"></span></div>' +
+      '<p class="who"></p>' +
+      '<p class="steal"><b>Steal this</b><span class="steal-text"></span></p>' +
+      '<div class="url"></div>';
+    a.querySelector('.name').textContent = s.name;
+    a.querySelector('.tag').textContent = s.category;
+    a.querySelector('.who').textContent = s.who;
+    a.querySelector('.steal-text').textContent = s.steal;
+    a.querySelector('.url').textContent = s.url.replace(/^https?:\/\//,'');
+    grid.appendChild(a);
+  });
+  countEl.textContent = list.length + (list.length === 1 ? ' site' : ' sites');
+}
+
+document.querySelectorAll('.filters button').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filters button').forEach(b => b.setAttribute('aria-pressed','false'));
+    btn.setAttribute('aria-pressed','true');
+    renderSites(btn.dataset.filter);
+  });
+});
+
+// ---- render news ----
+const newsList = document.getElementById('news-list');
+NEWS.forEach(n => {
+  const li = document.createElement('li');
+  li.innerHTML =
+    '<div class="date"></div>' +
+    '<div class="body"><h3></h3><p></p>' +
+    '<div class="meta"><span class="pill"></span><a target="_blank" rel="noopener noreferrer"></a></div></div>';
+  li.querySelector('.date').textContent = n.date;
+  li.querySelector('h3').textContent = n.title;
+  li.querySelector('.body p').textContent = n.body;
+  const pill = li.querySelector('.pill');
+  pill.textContent = n.tag;
+  if (n.hot) pill.classList.add('hot');
+  const link = li.querySelector('.meta a');
+  link.href = n.url;
+  link.textContent = n.source + ' ↗';
+  newsList.appendChild(li);
+});
+
+// ---- theme toggle ----
+document.getElementById('theme-toggle').addEventListener('click', () => {
+  const root = document.documentElement;
+  const current = root.getAttribute('data-theme');
+  const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+  const next = current ? (current === 'dark' ? 'light' : 'dark') : (prefersDark ? 'light' : 'dark');
+  root.setAttribute('data-theme', next);
+});
+
+renderSites('all');
+</script>
+</body>
+</html>
